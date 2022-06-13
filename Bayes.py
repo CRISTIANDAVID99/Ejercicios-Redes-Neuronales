@@ -27,9 +27,12 @@ Zb_inv=np.linalg.inv(Zb_m)
 mua=Xa.mean()
 mub=Xb.mean()
 ln_Z=np.log(abs(np.linalg.norm(Za_m))/abs(np.linalg.norm(Za_m)))
-xt=Xb.iloc[10,:].transpose()
+xt=X.transpose().reset_index(drop=True)
+xt.columns=range(xt.columns.size)
 
-Ck=-(1/2)*np.linalg.norm(Za_inv)*(xt-mua).transpose().dot(xt-mua)+(1/2)*np.linalg.norm(Zb_inv)*(xt-mub).transpose().dot(xt-mub)+(1/2)*ln_Z
-print(Ck)
-K=-1 if Ck<=np.log((1-Py_c1)/Py_c1) else 1
+rep=len(xt.columns)
+
+Ck=-(1/2)*np.linalg.norm(Za_inv)*(xt-pd.concat([mua]*rep,axis=True)).transpose().dot(xt-pd.concat([mua]*rep,axis=True))+(1/2)*np.linalg.norm(Zb_inv)*(xt-pd.concat([mub]*rep,axis=True)).transpose().dot(xt-pd.concat([mub]*rep,axis=True))+(1/2)*ln_Z
+
+K=pd.DataFrame(np.diag(Ck))
 print(K)
