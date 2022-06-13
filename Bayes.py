@@ -27,9 +27,9 @@ Zb_inv=pd.DataFrame(np.linalg.inv(Zb_m))
 mua=Xa.mean()
 mub=Xb.mean()
 ln_Z=np.log(abs(Za_m)/abs(Zb_m))
-xt=pd.DataFrame(np.ones(2))
+xt=Xb.iloc[10,:].transpose()
 
-Ck=-(1/2)*(xt-mua).transpose().dot(Za_inv).dot(xt-mua)+(1/2)*(xt-mub).transpose().dot(Zb_inv).dot(xt-mub)+(1/2)*ln_Z
-
-K=1 if Ck.iloc[0,0]<=np.log((1-Py_c1)/Py_c1) else -1
+Ck=-(1/2)*(xt-mua).transpose().dot(Za_inv).dot(xt-mua)+(1/2)*(xt-mub).transpose().dot(Zb_inv).dot(xt-mub)#+(1/2)*ln_Z
+print(Ck)
+K=-1 if Ck<=np.log((1-Py_c1)/Py_c1) else 1
 print(K)
