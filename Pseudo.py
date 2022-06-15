@@ -11,6 +11,7 @@ Xb=pd.DataFrame(bd.iloc[4,1])
 Xa[3]=1
 Xb[3]=-1
 X=pd.concat([Xa,Xb],axis=0)
+
 X[2]=1 #X=[X2,X1,X0,Y]
 plt.scatter(Xa[1],Xa[0],c='b')
 plt.scatter(Xb[1],Xb[0],c='r')

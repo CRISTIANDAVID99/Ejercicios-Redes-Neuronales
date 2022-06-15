@@ -1,0 +1,15 @@
+
+A[(x1+c1)^2+(x2+c2)^2]+B[(x1+k1)^2+(x2+k2)^2]+F
+
+N=2c
+M=2k
+A[y^2+x^2+2c^2+N*(x+y)]+B[y^2+x^2+2k^2+M*(x+y)]+F
+G=A[2c^2]+B[2k^2]+F
+[A+B][y^2+x^2]+A[2c^2+N*(x+y)]+B[2k^2+M*(x+y)]+F
+[B]y^2+2[Ac+Bk]y+[A]x^2+2[Ac+Bk]x+G=0
+[B][y^2+2([Ac+Bk]/B)y]+[A][x^2+2[Ac+Bk]/A)x]+G=0
+[B][y^2+2([Ac+Bk]/B)y+([Ac+Bk]/B)^2]+[A][x^2+2([Ac+Bk]/A)x+([Ac+Bk]/A)^2]+G=([Ac+Bk]^2/B)+([Ac+Bk]^2/A)
+[B][y+([Ac+Bk]/B)]^2+[A][x+([Ac+Bk]/A)]^2+G=([Ac+Bk]^2/B)+([Ac+Bk]^2/A)
+
+
+
