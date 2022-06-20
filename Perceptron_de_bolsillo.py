@@ -25,7 +25,7 @@ W=pd.DataFrame(np.random.rand(1,3))
 M=0
 Mm=0
 Wm=W
-for i in range(100000):
+for i in range(1000):
 
     ind=np.random.randint(999)
     Yi=pd.concat([Y.iloc[ind]]*3).reset_index(drop=True)
@@ -34,13 +34,14 @@ for i in range(100000):
     yt=g/abs(g)
 
     if all(yt*Y.iloc[ind]>=0):
+
         M+=1
+        
     else:
         if M>Mm:
             Wm=W
             Mm=M
-            
-       
+        
         W=W+(Yi*X.iloc[ind,:])
         M=0
 
