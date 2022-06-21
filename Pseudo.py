@@ -21,8 +21,7 @@ X=X.iloc[ik,:].reset_index(drop=True)
 Xt=X.iloc[:int(len(X.index)*0.8),:]
 Xv=X.iloc[int(len(X.index)*0.8):,:]
 
-plt.scatter(Xa[1],Xa[0],c='b')
-plt.scatter(Xb[1],Xb[0],c='r')
+
 
 
 W=Xt.iloc[:,[0,1,2]].transpose().dot(Xt.iloc[:,[0,1,2]]).dot(Xt.iloc[:,[0,1,2]].transpose()).dot(Xt[3]) #Pseundo-inversa
