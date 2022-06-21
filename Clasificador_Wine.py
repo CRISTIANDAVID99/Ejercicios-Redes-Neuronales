@@ -24,23 +24,29 @@ Xt=X.iloc[X.index<int(len(X.index)*0.8)]
 Yt=Y.iloc[Y.index<int(len(Y.index)*0.8)]
 
 keras.optimizer_v1.Adam(lr=0.1)
-model = Sequential()
-model.add(Dense(50, input_dim=13,activation='relu'))
-model.add(Dense(1))
-model.compile(loss='mean_squared_error',
-              optimizer='Adam',
-              metrics=['mse'])
 
-model.fit(Xt, Yt, epochs=5000)
+err = pd.DataFrame(columns=['false',],
+                  index=range(20))
+for i in range(10):
+    model = Sequential()
+    model.add(Dense(15, input_dim=13,activation='relu'))
+    model.add(Dense(1))
+    model.compile(loss='mean_squared_error',
+                optimizer='Adam',
+                metrics=['mse'])
 
-scores = model.evaluate(Xt, Yt)
-print(scores)
-print (model.predict(Xt).round())
-Yf=pd.DataFrame(model.predict(Xt).round())
-V = (Yt.iloc[:]==Yf.iloc[:])
+    model.fit(Xt, Yt, epochs=2000)
 
-print(V)
-freq = V.value_counts()
-print(freq)
-print(Yf)
-print(Yt)
+    scores = model.evaluate(Xt, Yt)
+    print(scores)
+    print (model.predict(Xt).round())
+    Yf=pd.DataFrame(model.predict(Xt).round())
+    V = (Yt.iloc[:]==Yf.iloc[:])
+
+    freq = V.value_counts()
+    print(freq.keys())
+    print(err)
+    err.iloc[i]=freq[False]/140
+
+print("Error de generaliacion: ")
+print(err)
